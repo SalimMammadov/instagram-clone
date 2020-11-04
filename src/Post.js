@@ -3,6 +3,8 @@ import React, { useState, useEffect } from "react";
 import { db } from "./firebase";
 import "./Post.css";
 import firebase from "firebase";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 function Post({ imageUrl, caption, user, username, postId }) {
   const [comments, setComments] = useState([]);
@@ -45,7 +47,15 @@ function Post({ imageUrl, caption, user, username, postId }) {
         />
         <h3>{username}</h3>
       </div>
-      <img className="post__image" src={imageUrl} alt="" />
+      <LazyLoadImage
+        effect="blur"
+        className="post__image"
+        src={imageUrl}
+        placeholderSrc={
+          process.env.PUBLIC_URL + "/5922208e18658f5e83b6ad801b895f71.gif"
+        }
+        alt=""
+      />
       <h4 className="post__text">
         <strong>{username}</strong> {caption}
       </h4>
